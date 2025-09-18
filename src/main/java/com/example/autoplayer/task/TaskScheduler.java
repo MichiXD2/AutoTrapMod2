@@ -55,10 +55,8 @@ public class TaskScheduler {
     }
 
     public void tick() {
-        context.getKeybindHandler().poll();
         context.getSafetyManager().tick(context);
         if (!context.getConfig().isEnabled()) {
-            context.getHud().render(context, null);
             return;
         }
         if (currentTask == null && currentIndex < tasks.size()) {
@@ -66,7 +64,6 @@ public class TaskScheduler {
         }
         if (currentTask != null) {
             currentTask.tick(context);
-            context.getHud().render(context, currentTask);
             if (currentTask.isComplete(context)) {
                 currentTask.onComplete(context);
                 completedTasks.add(currentTask.getName());
@@ -80,8 +77,6 @@ public class TaskScheduler {
                     progressPersistence.saveCompletedTasks(completedTasks, "");
                 }
             }
-        } else {
-            context.getHud().render(context, null);
         }
         context.getStateMachine().tick(context);
     }
@@ -102,5 +97,9 @@ public class TaskScheduler {
 
     public Set<String> getCompletedTaskNames() {
         return new HashSet<>(completedTasks);
+    }
+
+    public Optional<AutoPlayerTask> getCurrentTask() {
+        return Optional.ofNullable(currentTask);
     }
 }
