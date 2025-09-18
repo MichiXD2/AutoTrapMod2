@@ -26,14 +26,21 @@ public final class AutoPlayerMod {
 
     private final ConfigManager configManager;
     private final ProgressPersistence progressPersistence;
+    private AutoPlayerConfig config;
+    private TaskContext context;
+    private TaskScheduler scheduler;
+    private boolean initialized;
 
     public AutoPlayerMod() {
         this.configManager = new ConfigManager();
         this.progressPersistence = new ProgressPersistence();
     }
 
-    public void start() {
-        AutoPlayerConfig config = configManager.load();
+    public void initialize() {
+        if (initialized) {
+            return;
+        }
+        this.config = configManager.load();
         WorldScanner worldScanner = new WorldScanner(config.getScanRadius());
         InventoryManager inventoryManager = new InventoryManager();
         CraftingManager craftingManager = new CraftingManager();
@@ -44,7 +51,7 @@ public final class AutoPlayerMod {
         AutoPlayerHud hud = new AutoPlayerHud();
         KeybindHandler keybindHandler = new KeybindHandler(config, hud);
 
-        TaskContext context = new TaskContext(
+        this.context = new TaskContext(
                 config,
                 inventoryManager,
                 craftingManager,
@@ -58,7 +65,7 @@ public final class AutoPlayerMod {
                 progressPersistence,
                 configManager);
 
-        TaskScheduler scheduler = new TaskScheduler(progressPersistence, context);
+        this.scheduler = new TaskScheduler(progressPersistence, context);
         context.setScheduler(scheduler);
 
         scheduler.registerTask(new GatherWoodTask());
@@ -67,22 +74,45 @@ public final class AutoPlayerMod {
         scheduler.registerTask(new EquipDiamondSetTask());
 
         scheduler.start();
-
-        while (!scheduler.isComplete()) {
-            scheduler.tick();
-            try {
-                Thread.sleep(100L);
-            } catch (InterruptedException ignored) {
-                Thread.currentThread().interrupt();
-                break;
-            }
-        }
-
-        configManager.save(config);
-        progressPersistence.saveCompletedTasks(scheduler.getCompletedTaskNames(), scheduler.getCurrentTaskName().orElse(""));
+        initialized = true;
     }
 
-    public static void main(String[] args) {
-        new AutoPlayerMod().start();
+    public void tick() {
+        if (!initialized) {
+            return;
+        }
+        scheduler.tick();
+    }
+
+    public void renderHud() {
+        if (!initialized) {
+            return;
+        }
+        if (!context.getConfig().isEnabled()) {
+            context.getHud().render(context, null);
+            return;
+        }
+        context.getHud().render(context, scheduler.getCurrentTask().orElse(null));
+    }
+
+    public void toggleAutomation() {
+        if (!initialized) {
+            return;
+        }
+        context.getKeybindHandler().toggleAutomation();
+    }
+
+    public void saveState() {
+        if (!initialized) {
+            return;
+        }
+        configManager.save(config);
+        progressPersistence.saveCompletedTasks(
+                scheduler.getCompletedTaskNames(),
+                scheduler.getCurrentTaskName().orElse(""));
+    }
+
+    public boolean isInitialized() {
+        return initialized;
     }
 }
