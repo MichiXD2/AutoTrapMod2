@@ -36,6 +36,10 @@ public final class AutoPlayerMod {
         this.progressPersistence = new ProgressPersistence();
     }
 
+    public void start() {
+        initialize();
+    }
+
     public void initialize() {
         if (initialized) {
             return;
