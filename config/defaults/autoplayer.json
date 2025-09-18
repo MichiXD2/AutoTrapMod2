@@ -1,0 +1,38 @@
+{
+  "showHud": true,
+  "activeProfile": "standard_trap",
+  "delayTicks": 4,
+  "autoCollect": true,
+  "autoBuild": true,
+  "autoReset": true,
+  "worldOverrides": {
+    "example_world": {
+      "activeProfile": "rush_trap",
+      "delayTicks": 2
+    }
+  },
+  "profiles": {
+    "standard_trap": {
+      "label": "Standard Trap",
+      "sequence": [
+        "equip_shovel",
+        "dig_pit",
+        "place_spikes",
+        "cover_trigger"
+      ]
+    },
+    "rush_trap": {
+      "label": "Rush Trap",
+      "sequence": [
+        "dig_pit",
+        "place_spikes"
+      ]
+    }
+  },
+  "keybinds": {
+    "toggleHud": "key.keyboard.h",
+    "pause": "key.keyboard.p",
+    "nextProfile": "key.keyboard.period",
+    "previousProfile": "key.keyboard.comma"
+  }
+}

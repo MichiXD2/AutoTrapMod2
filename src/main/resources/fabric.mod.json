@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "autoplayer",
+  "version": "1.0.0",
+  "name": "AutoTrap Mod 2",
+  "description": "Automates repetitive trap preparation tasks with in-game HUD controls and per-world presets.",
+  "authors": [
+    "AutoTrap Team"
+  ],
+  "contact": {
+    "homepage": "https://example.com/autotrapmod",
+    "sources": "https://github.com/example/AutoTrapMod2"
+  },
+  "license": "MIT",
+  "icon": "assets/autoplayer/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "com.autotrap.AutoplayerClient"
+    ]
+  },
+  "mixins": [
+    "autoplayer.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": ">=1.20.1",
+    "fabric-api": ">=0.91.0"
+  },
+  "custom": {
+    "loom:generated": true
+  }
+}
