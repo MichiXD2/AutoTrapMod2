@@ -57,7 +57,6 @@ public class TaskScheduler {
     public void tick() {
         context.getSafetyManager().tick(context);
         if (!context.getConfig().isEnabled()) {
-            context.getStateMachine().tick(context);
             return;
         }
         if (currentTask == null && currentIndex < tasks.size()) {
