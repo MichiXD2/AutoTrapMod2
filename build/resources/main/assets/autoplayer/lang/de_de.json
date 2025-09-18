@@ -1,0 +1,18 @@
+{
+  "mod.autoplayer.title": "AutoTrap Mod 2",
+  "mod.autoplayer.description": "Automatisiert Fallenbau-Aufgaben mit konfigurierbaren Abläufen.",
+  "key.autoplayer.toggle": "Autoplayer-HUD umschalten",
+  "hud.autoplayer.status.idle": "Status: Inaktiv",
+  "hud.autoplayer.status.running": "Status: Läuft",
+  "hud.autoplayer.profile": "Profil: %s",
+  "hud.autoplayer.stepsRemaining": "Verbleibende Schritte: %s",
+  "config.autoplayer.category.general": "Allgemein",
+  "config.autoplayer.category.controls": "Steuerung",
+  "config.autoplayer.category.automation": "Automatisierung",
+  "config.autoplayer.option.showHud": "HUD anzeigen",
+  "config.autoplayer.option.autoCollect": "Benötigte Materialien sammeln",
+  "config.autoplayer.option.autoBuild": "Fallenstruktur bauen",
+  "config.autoplayer.option.autoReset": "Nach Abschluss zurücksetzen",
+  "config.autoplayer.option.delayTicks": "Verzögerung zwischen Aktionen (Ticks)",
+  "config.autoplayer.option.worldOverrides": "Weltspezifische Überschreibungen"
+}

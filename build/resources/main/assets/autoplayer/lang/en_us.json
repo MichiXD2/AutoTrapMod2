@@ -1,0 +1,18 @@
+{
+  "mod.autoplayer.title": "AutoTrap Mod 2",
+  "mod.autoplayer.description": "Automates trap building tasks with configurable sequences.",
+  "key.autoplayer.toggle": "Toggle Autoplayer HUD",
+  "hud.autoplayer.status.idle": "Status: Idle",
+  "hud.autoplayer.status.running": "Status: Running",
+  "hud.autoplayer.profile": "Profile: %s",
+  "hud.autoplayer.stepsRemaining": "Steps remaining: %s",
+  "config.autoplayer.category.general": "General",
+  "config.autoplayer.category.controls": "Controls",
+  "config.autoplayer.category.automation": "Automation",
+  "config.autoplayer.option.showHud": "Show HUD",
+  "config.autoplayer.option.autoCollect": "Collect required materials",
+  "config.autoplayer.option.autoBuild": "Build trap structure",
+  "config.autoplayer.option.autoReset": "Reset when finished",
+  "config.autoplayer.option.delayTicks": "Delay between actions (ticks)",
+  "config.autoplayer.option.worldOverrides": "World-specific overrides"
+}
