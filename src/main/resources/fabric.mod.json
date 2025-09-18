@@ -16,7 +16,7 @@
   "environment": "client",
   "entrypoints": {
     "main": [
-      "com.example.autoplayer.AutoPlayerClient"
+      "com.autotrap.AutoplayerClient"
     ]
   },
   "mixins": [
